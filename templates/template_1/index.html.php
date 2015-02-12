@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-  ok
+alalalalalalalalal
       <meta charset="utf-8">
       <title><?php echo ($Item->getMTitle() != '' ? $Item->getMTitle() : $Item->getLongName()); ?> </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
