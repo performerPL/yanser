@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+    	
+
+{literal}
+<style> 
+p { margin: 0; padding 0 0 5px 0;}
+h1 {text-align: left; font: normal 21px Arial; color: #274865; margin: 0; padding: 0 0 5px 0;}
+#footer {font: normal 11px Tahoma; padding: 0 0 0 0px; text-align: left; background: #f7f9fb; border: 1px solid #eff4f7; color: #274865; }
+ 
+a.news {color: #639223; text-decoration: none; font: bold 12px Tahoma ;}
+a {color: #639223; text-decoration: none; }
+a:hover { color: #FF8C00; text-decoration: underline;}
+</style> 
+{/literal}
+        <div class="content">
+        	{if $email_content != ''}
+			
+			
+            <table style="text-align:left; margin:0 auto; padding: 0 0 0 40px; font:normal 12px Tahoma;" width="600" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td valign="top" style="padding:0px 0 10px 0">
+                        <div class="top_text">{$email_content}</div>
+                    </td>
+                </tr>
+            </table>
+
+			{/if}
+			
+			{if $type != 3}
+            <table style="text-align:left; margin:0 auto; padding: 0 0 0 40px; font:normal 12px Tahoma;" width="600" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td valign="top" style="padding: 0px 0 20px 0">
+						{** dla listy 10 w kazdej z grup **}
+						{if $type == 1} 
+						{foreach from=$articles item=group key=groupId}
+						<p style="margin: 0; padding: 3px 0 25px 0;">
+							<b>Nowośći z: {$newsletter_groups[$groupId].wug_name}</b>
+						</p>
+						{foreach from=$group item=article}
+                        <a class="news"  href="http://rolnictwo.agro.pl/{$article.item_id},0,{$article.url}">{$article.item_name}</a>
+                        <div style="margin: 0; padding: 3px 0 25px 0;">{$article.item_description}</div>
+                        {/foreach}
+						{/foreach}
+						{else}
+						{foreach from=$articles item=article}
+                        <a class="news" href="http://rolnictwo.agro.pl/{$article.item_id},0,{$article.url}">{$article.item_name}</a>
+                        <div style="margin: 0; padding: 3px 0 25px 0;">{$article.item_description}</div>
+						{/foreach}
+						{/if}
+                    </td>
+                </tr>
+            </table>
+			{/if}
+            <div id="footer">
+                <table style="text-align:left; margin:0 auto; padding: 0 0 0 40px; font:normal 12px Tahoma;" width="600" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="top" style="padding:10px 0 10px 0">
+                        	
+                            <p>
+                                Wiadomości z dnia: {$date}
+                            <br><br></p>
+                            <p>
+                                Newsletter został wysłany na podstawie rejestracji w portalu <a href="http://www.rolnictwo.agro.pl" target="_blank">rolnictwo.agro.pl</a>
+                                <br>
+                                <a href="http://www.rolnictwo.agro.pl/?NEWSLETTER_CANCEL={$email}" target="_blank">Rezygnuje z subskrypcji</a>
+                            <br><br></p>
+                            <p>
+                                Portal <a href="http://rolnictwo.agro.pl" target="_blank">rolnictwo.agro.pl</a> <br>
+                               tel: 0 601 99 57 26 <br>
+                                <a href="mailto:email%3Akontakt@rolnictwo.agro.pl" target="_blank">email:kontakt@rolnictwo.agro.pl</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

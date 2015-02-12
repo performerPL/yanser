@@ -1,0 +1,10 @@
+Witaj {$USER.wu_firstname} {$USER.wu_lastname}!
+
+Dziękujemy za dokonanie rejestracji w portalu www.rolnictwo.agro.pl
+Aby dokończyć proces rejestracji i aktywować konto prosimy o kliknięcie na poniższy link weryfikacyjny:
+
+
+Aktywacja konta:  {$url}
+
+Redakcja portalu
+rolnictwo.agro.pl

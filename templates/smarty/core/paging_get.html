@@ -1,0 +1,36 @@
+{* tworzy panel do stronnicowania *}
+{* stronnicowanie działa poprzez przekazywanie offsetów metodą GET (za pomocą linków) *}
+	<table>
+		<tr>
+			<td>
+				{if $pager->prev > 0}
+				<a name="page" href="{$out.paging->url}?page={$out.paging->prev}">
+					<< Wstecz
+				</a>	 
+				{/if}
+				{section name=page loop=$out.paging->numPages}
+					{$out.paging->sign}
+					<a name="page" href="{$out.paging->url}?page={$smarty.section.page.iteration}">
+					
+						{if $smarty.section.page.iteration == $out.paging->page}
+							<b>{$out.paging->offset+1} - 
+							{if $smarty.section.page.last}
+							 {$out.paging->numHits}
+							{else}
+							 {$out.paging->offset+$out.paging->limit}
+							{/if}
+							</b>
+						{else}
+							{$smarty.section.page.iteration}
+						{/if}
+					</a>
+					{$out.paging->sign}
+				{/section}
+				{if $out.paging->next > 0}
+				<a name="page" href="{$out.paging->url}?page={$out.paging->next}">
+					Następny >>
+				</a>
+				{/if}
+			</td>
+		</tr>
+	</table>

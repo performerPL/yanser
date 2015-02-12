@@ -1,0 +1,51 @@
+{** pasek ze scieżką **}
+
+
+<div class="notices_filtr">
+<a href="katalog_www/0/0" style="float: right;"><b>Powrót</b></a>
+</div>
+	
+<div class="notices_path">
+{$out.groupPath}
+	</div>
+
+
+
+{** gdy istnieją podgrupy **}
+{if $out.subgroupListCnt > 0}
+
+	{foreach from=$out.subgroupList item=sg}
+		{if isset($sg.name)}
+		<a class="notices_one_group" href="katalog_www/{$sg.ng_id}_{$sg.groupPathUrlized}/">{$sg.name}</a>
+		{assign var=counter value=0}
+		{foreach from=$out.sites item=s}
+			
+			{if $s.www_catalog_group_id == $sg.id}
+			{assign var=counter value=`$counter+1`}
+			{if $counter == 1}<ul class="notices_lists">{/if}
+			<li>
+			<a class="notices_list" href="katalog_www/{$s.www_catalog_group_id}_{$out.groupPathUrlized}/{$s.id}_{$s.title}">
+				<b>{$s.title} - {$s.url}</b>
+			</a>
+			</li>
+			{/if}
+			
+		{/foreach}
+		{* gdy wystapily jakies wpisy w grupie zamyka znacznik *}
+		{if $counter > 0}</ul>{/if}
+		
+		{/if}
+	{/foreach}
+
+{** gdy nie ma podgrup **}
+{else}
+	<ul>
+	{foreach from=$out.sites key=k item=s}
+	<li>
+	<a class="notices_list" href="katalog_www/{$s.www_catalog_group_id}_{$out.groupPathUrlized}/{$s.id}">
+		<b>{$s.title}</b> - {$s.url}
+	</a>
+	</li>
+	{/foreach}
+	</ul>
+{/if}

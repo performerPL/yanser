@@ -1,0 +1,10 @@
+<ul class="www_catalog_list">
+{foreach from=$out.sites item=site} 
+<li><a href="katalog_www/{$site.www_catalog_group_id}_{$site.groupPathUrlized}/{$site.id}_{$site.title_urlized}">
+
+{if $out.data.show_title}{$site.title}{/if}
+{if $out.data.show_url}{$site.url}{/if}
+{if $out.data.show_description}{$site.description}{/if}
+</a></li>
+{/foreach}
+</ul>

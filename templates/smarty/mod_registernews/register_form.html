@@ -1,0 +1,53 @@
+<div class="">	
+<form method="post">
+<div class="form_left">Email *:</div>
+<div class="form_right">
+<input
+    class="input{if (in_array('wu_email', $out.errors))}red_error{/if}"
+    type="text" value="{$out.user.wu_email}"
+    name="USER[wu_email]"></div>
+<div class="space"></div>
+
+<div class="form_left">Imię *:</div>
+<div class="form_right">
+<input
+	class="input{if (in_array('wu_firstname', $out.errors))}red_error{/if}"
+	type="text" value="{$out.user.wu_firstname}"
+	name="USER[wu_firstname]"></div>
+<div class="space"></div>
+
+<div class="form_left">Nazwisko *:</div>
+<div class="form_right">
+<input
+	class="input{if (in_array('wu_lastname', $out.errors))}red_error{/if}"
+	type="text" value="{$out.user.wu_lastname}"
+	name="USER[wu_lastname]"></div>
+<div class="space"></div>
+
+<br /><br /> 
+{** lista checkboxów - do przerobienia!!! **} 
+<div class="form_left">zapisz do:</div><div class="space"></div>
+{php}
+global $AC,$Tab,$Error;
+foreach ($Tab['menu_list'] as $key => $menu) {
+    _gui_checkbox('allow_menu_access['.$menu['wug_id'].']', ' ' . $menu['wug_name'], 1, (!empty($AC[$menu['wug_id']])) ? 1 : 0, $Error['allow_upload']);
+}
+{/php}
+
+<div class="space"></div>
+<div class="form_row" style="height: 30px;"><img src="secretImage.php" /></div> 
+{if (in_array('captcha', $out.errors))}
+<div class="form_row">
+<span class="red">Podany kod z obrazka był nieprawidłowy! <br/>Proszę poprawnie podać aktualny kod z obrazka.</span>
+</div>
+{else} 
+<div class="form_row" >Wpisz kod z obrazka:</div>
+{/if}
+<div class="form_row"><input class="input" type="text"name="captcha"></div>
+<div class="form_left"></div>
+<div class="form_right"><input type="hidden" name="i_cmd"
+    value="register_news" /><input type="submit" value="dodaj" class="btn">
+<input type="submit" name="submit_delnews" value="usuń" class="btn" /></div>
+<div class="space"></div>
+</form>
+</div>

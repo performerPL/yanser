@@ -1,0 +1,29 @@
+
+
+<div class="site_catalog_detail">
+
+
+{** pasek ze scieżką **}
+<div class="notices_path">
+{$out.groupPath}
+</div>
+
+<a href="katalog_www/{$out.site.www_catalog_group_id}_{$out.groupPathUrlized}" style="display:none;">Powrót</a><br/>
+
+{* Nagłówek *}
+
+<h2>
+{$out.site.title}
+</h2>
+
+{* Opis strony *}
+<div class="site_catalog_desc">
+{$out.site.description}
+</div>
+{* adres URL *}
+<div class="site_catalog_url">
+<a href="http://{$out.site.url}" target="_blank">zobacz stronę: {$out.site.url}</a>
+</div>
+
+
+</div>

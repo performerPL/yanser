@@ -1,0 +1,61 @@
+
+	.dhtmlgoodies_tabPane{
+		
+	}
+	.dhtmlgoodies_aTab{
+		padding: 0;
+		margin: 0;
+		background: #fff;
+}
+	.dhtmlgoodies_tabPane DIV{
+		/*float:left;*/
+		padding-left:1px;
+		padding-right:0px;
+		vertical-align:top;
+		background-repeat:no-repeat;
+		background-position:bottom left;
+		cursor:pointer;
+		position:relative;
+		bottom:-1px;
+		margin-left:0px;
+		margin-right:0px;
+		
+	}
+	.dhtmlgoodies_tabPane .tabActive{
+		background-image:url('img/tab_left_active.gif');
+		margin-left:0px;
+		margin-right:0px;	
+		z-index:10;	
+	}
+
+	.dhtmlgoodies_tabPane .tabInactive{
+		background-image:url('img/tab_left_inactive.gif');
+		margin-left:0px;
+		margin-right:0px;
+		z-index:1;
+	}
+
+	.dhtmlgoodies_tabPane .inactiveTabOver{
+		background-image:url('img/tab_left_over.gif');
+		margin-left:0px;
+		margin-right:0px;
+	}
+	.dhtmlgoodies_tabPane span{
+		
+		vertical-align:top;
+		font-size:12px;
+		padding-left:0px;
+		padding-right:0px;		
+		line-height:30px;
+		/*float:left;*/
+	}
+	.dhtmlgoodies_tabPane .tabActive span{
+		padding-bottom:1px;
+		line-height:29px;
+		font-weight: bold;
+	
+	}
+	
+	.dhtmlgoodies_tabPane img{
+		/*float:left;*/
+	}

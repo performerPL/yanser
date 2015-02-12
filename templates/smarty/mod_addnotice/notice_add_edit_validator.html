@@ -1,0 +1,60 @@
+{* waliduje przy pomocy jQuery formularz *}
+
+{literal}
+<script type="text/javascript" src="js/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.validate.additional-methods.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+	jQuery("#notice_add_form").validate({
+		rules: {
+			n_title: {
+				required: true
+			},
+			n_body: {
+				required: true
+			},
+			main_group: {
+				required: true
+			},
+			"allow_menu_access[]": {
+				required: true,
+				rangeLength:[1,10]
+			},
+		    captcha: {
+			      required: true,
+			      remote: "secretImage.php?ajax=1"
+			},
+			n_contact: {
+				required: true
+			}
+						
+		},
+		messages: {
+			n_title: {
+				required: " Tytuł jest wymagany!"
+			},
+			n_body: {
+				required: " Treść jest wymagana!"
+			},
+			main_group: {
+				required: " Grupa główna jest wymagana!"
+			},
+			"allow_menu_access[]": {
+				required: " Proszę wybrać przynajmniej jedną grupę!",
+				rangeLength: "Proszę wybrać max. 10 grup"	
+			},
+	        captcha: {
+                remote: "Podaj poprawny kod z obrazka"
+            },
+            n_contact: {
+                required: "Dane kontaktowe są niezbędne!"
+            }
+		}
+	});
+
+});
+
+
+</script>
+{/literal}

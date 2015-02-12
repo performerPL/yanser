@@ -1,0 +1,124 @@
+
+/*  kod do zawieszenia menu na gorze strony po przewijaniu */
+
+#content_fix{
+  float: left;
+  width: 100%;
+  margin-bottom: 20px;
+  z-index: 9997;
+	background: 
+}
+
+#content_fix.fixed{
+  position:fixed;
+  top:0px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  z-index: 9997;
+}
+
+
+/* FIXED TOP END */
+
+nav {
+	margin: 0px auto; 
+	text-align: center;
+	width: 900px;
+	z-index: 9998;
+}
+
+nav ul ul {
+	display: none;
+	z-index: 9999;
+}
+
+	nav ul li:hover > ul {
+		display: block;
+	}
+
+
+nav ul {
+	/* background: #9b9b9b;  tło glownaego paska menu 
+	
+
+	
+	box-shadow:inset 0 0 10px #888; */
+	padding: 0px;
+	border-radius: 0px;  
+	list-style: none;
+	position: relative;
+	/*display: inline-table;*/
+	z-index: 9999;
+	text-align: center;
+}
+	nav ul:after {
+		content: ""; clear: both; display: block;
+	}
+
+
+	nav ul li {
+		display: inline-block; 
+        padding: 0px;
+        margin: 0px;
+        
+        
+	}
+		nav li:hover {
+			background: #000; /*podswietlenie wybranej pozycji */
+
+		}
+			nav ul li:hover a {
+				color: #fff;
+				white-space:nowrap;
+			}
+		
+		nav ul li a {
+			display: block; padding: 15px 40px; /*  napisy na glownym menu */ 
+			color: #fff; text-decoration: none;
+			font-weight: 400;
+
+			font-size: 1.5em;
+            margin: 0px;
+		}
+			
+		
+	nav ul ul {
+		background: #fcb040; border-radius: 0px; padding: 0;
+		position: absolute; top: 100%;
+		box-shadow:inset 0 0 0px #777;
+	}
+		nav ul ul li {
+			float: none; 
+			border-top: 0px solid #fec46e;
+			border-bottom: 0px solid #fb9703; position: relative;
+		}
+			nav ul ul li a {
+				padding: 10px 30px 10px 10px ;
+				color: #fff;
+				border: 0px;
+			}	
+				nav ul ul li a:hover {
+					background: #9b9b9b;
+				}
+		
+	nav ul ul ul {
+		position: absolute; left: 100%; top: -1px;
+	}
+		nav ul ul ul li {
+			float: none; 
+			border-top: 1px solid #fec46e;
+			border-bottom: 1px solid #fb9703; position: relative;
+		}
+			nav ul ul ul li a {
+				padding: 10px 30px 10px 10px ;
+				color: #fff;
+				border: 0px;
+				white-space:nowrap;
+			}	
+				nav ul ul ul li a:hover {
+					background: #000;
+					
+				}

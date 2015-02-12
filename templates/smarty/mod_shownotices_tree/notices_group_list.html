@@ -1,0 +1,61 @@
+{** pasek ze scieżką **}
+
+
+<div class="notices_filtr">
+<a href="ogloszenia/0/0" style="float: right;"><b>Powrót</b></a>
+
+{** formularz filtracji **}
+<form method="post" action="ogloszenia/{$out.currentGroup}_{$out.groupPathUrlized}/">
+
+		Pokaż ogłoszenia:
+		{html_options name=mainGroup options=$out.mainGroups selected=$out.selectedMainGroup}
+
+	<input type="submit" value="Filtruj">
+
+</form>
+	</div>
+	
+<div class="notices_path">
+{$out.groupPath}
+	</div>
+
+
+
+{** gdy istnieją podgrupy **}
+{if $out.subgroupListCnt > 0}
+
+	{foreach from=$out.subgroupList item=sg}
+		{if isset($sg.ng_name)}
+		<a class="notices_one_group" href="ogloszenia/{$sg.ng_id}_{$sg.groupPathUrlized}/" title="Ogłoszenia: {$sg.ng_name}">{$sg.ng_name}</a>
+		{assign var=counter value=0}
+		{foreach from=$out.notices item=n}
+			
+			{if $n.ng_id == $sg.ng_id}
+			{assign var=counter value=`$counter+1`}
+			{if $counter == 1}<ul class="notices_lists">{/if}
+			<li>
+			<a  class="notices_list" href="ogloszenia/{$n.ng_id}_{$sg.groupPathUrlized}/{$n.n_id}_{$n.n_title_urlized}">
+				{$n.n_created|date_format:"%Y-%m-%d"} | {$n.ngm_name} | {$n.n_title}
+			</a>
+			</li>
+			{/if}
+			
+		{/foreach}
+		{* gdy wystapily jakies ogloszenia w grupie zamyka znacznik *}
+		{if $counter > 0}</ul>{/if}
+		
+		{/if}
+	{/foreach}
+
+{** gdy nie ma podgrup **}
+{else}
+	<ul>
+	{foreach from=$out.notices key=k item=n}
+	<li>
+	<a class="notices_list" href="ogloszenia/{$n.ng_id}_{$out.groupPathUrlized}/{$n.n_id}_{$n.n_title_urlized}" title="Ogłoszenie: {$n.n_title}">
+		{$n.n_created|date_format:"%Y-%m-%d"} | {$n.ngm_name} | <b>{$n.n_title}</b>
+	</a>
+	</li>
+	{/foreach}
+	</ul>
+{/if}

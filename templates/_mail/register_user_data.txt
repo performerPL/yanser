@@ -1,0 +1,27 @@
+Rejestracja na portalu rolnictwo.agro.pl -  - {if $USER.wu_newsletter == 1} newsletter {else} użytkownik {/if}.
+
+
+Imię: {$USER.wu_firstname}
+Nazwisko: {$USER.wu_lastname}
+Ulica: {$USER.wu_street}
+Miasto: {$USER.wu_city}
+Kod pocztowy: {$USER.wu_zipcode}
+Województwo: {$USER.wu_province}
+Email: {$USER.wu_mail}
+Telefon: {$USER.wu_phone}
+Fax: {$USER.wu_fax}
+Telefon komórkowy: {$USER.wu_cellphone}
+Gadu-gadu: {$USER.wu_gg}
+Skype: {$USER.wu_skype}
+Strona WWW: {$USER.wu_site}
+Pow. gospodarstwa (ha): {$USER.wu_area}
+Produkcja roślinna (ha): {$USER.wu_plant_production}
+jakie: {$USER.wu_plant_production_desc}
+Produkcja zwierzęca (szt.): {$USER.wu_animal_production}
+Wyposażenie techniczne: {$USER.wu_technical_equipment}
+
+Grupy użytkownika:
+{foreach from=$USER.allow_menu_access key=groupId item=group}
+- {$GROUPS[$groupId]}
+{/foreach}
+

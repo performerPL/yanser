@@ -1,0 +1,41 @@
+{literal}
+<script src="js/jquery/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+{/literal}
+var pagingId = "{$out.paging->uniqueId}";
+{literal}
+
+jQuery(document).ready(function(){
+    // zdarzenie na klikniecie w link
+    jQuery("#"+pagingId+" a[name=page]").live("click",function() {
+        var paramsUrl = jQuery.param(jQuery("[name^=params]"));
+        if(paramsUrl != '')
+            jQuery(this).attr( "href",jQuery(this).attr("href")+'&'+paramsUrl );
+    });
+
+    // zdarzenie na zmianę jednego z parametrow
+    jQuery("#"+pagingId+" [name^=params]").live("change",function() {
+        var paramsUrl = jQuery.param(jQuery("[name^=params]"));
+        if(paramsUrl != '')
+        	window.location = '?page=1&'+paramsUrl;
+    });
+});
+</script>
+{/literal}
+
+
+<div id="{$out.paging->uniqueId}" align="center">
+
+{* 
+ * dodatkowe parametry 
+ * wystarczy dodać nowy element o nazwie params['nazwa_zmiennej']
+*}
+
+<br>
+Wyświetlaj wyniki na stronie po: 
+{html_options name='params[limit]' options=$out.params.limitList selected=$out.paging->limit}
+
+
+{* ładuje stronnicowanie *}
+{include file='core/paging_get.html'}
+</div>

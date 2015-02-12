@@ -1,0 +1,69 @@
+<div class="form_registeruser">	
+<form method="post">
+<div class="form_left">Nazwa użytkownika *: 
+{if (in_array('login', $out.errors))}
+taki użytkownik już istnieje
+{/if}
+</div>
+<div class="form_right">
+<input
+	class="input{if (in_array('wu_login', $out.errors))} red_error{/if}"
+	type="text" value="{$out.user.wu_login}"
+	name="USER[wu_login]"></div>
+<div class="space"></div>
+<br />
+
+
+<div class="form_left">Hasło *: 
+{if (in_array('pass', $out.errors))}
+hasła nie zgadzają się
+{/if}</div>
+<div class="form_right"><input
+	class="input{if (in_array('wu_password', $out.errors))}red_error{/if}"
+	type="password" value="{$out.user.wu_password}"
+	name="USER[wu_password]"></div>
+<div class="space"></div>
+
+<div class="form_left">Potwierdź hasło *:</div>
+<div class="form_right">
+<input
+	class="input{if (in_array('wu_password2', $out.errors))}red_error{/if}"
+	type="password" value="{$out.user.wu_password2}"
+	name="USER[wu_password2]"></div>
+<div class="space"></div>
+
+
+<div class="form_left">*Email :</div>
+<div class="form_right">
+<input
+	class="input{if (in_array('wu_email', $out.errors))}red_error{/if}"
+	type="text" value="{$out.user.wu_email}"
+	name="USER[wu_email]"></div>
+<div class="space"></div>
+
+
+
+
+<br /><br /> 
+{** lista checkboxów - do przerobienia!!! **} 
+{php}
+global $AC,$Tab,$Error;
+foreach ($Tab['menu_list'] as $key => $menu) {
+  _gui_checkbox('allow_menu_access['.$menu['wug_id'].']', 'Chce należeć do: ' . $menu['wug_name'], 1, (!empty($AC[$menu['wug_id']])) ? 1 : 0, $Error['allow_upload']);
+}
+{/php}
+
+
+<div class="form_left">Wpisz tekst z obrazka:<img src="secretImage.php" /> 
+{if (in_array('captcha', $out.errors))}
+Podany kod z obrazka był nieprawidłowy. Proszę poprawnie podać aktualny kod z obrazka.
+{/if}</div>
+<div class="form_right" style="width: 145px;"><input class="input" type="text"name="captcha"></div>
+<div class="space"></div>
+
+<div class="form_left"></div>
+<div class="form_right"><input type="hidden" name="i_cmd"
+	value="{$out.formType}" /><input type="submit" value="Zapisz" class="btn"></div>
+<div class="space"></div>
+</form>
+</div>

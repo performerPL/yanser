@@ -1,0 +1,39 @@
+
+
+<div class="notice_detail">
+
+
+{** pasek ze scieżką **}
+<div class="notices_path">
+{$out.groupPath}
+</div>
+
+<a href="ogloszenia/{$out.notice.ng_id}_{$out.groupPathUrlized}" style="display:none;">Powrót</a><br/>
+
+{* Nagłówek *}
+
+<h2>
+
+<span class="notice_group_name">{$out.notice.ngm_name}</span>: {$out.notice.n_title}  &nbsp;<span class="date">({$out.notice.n_created},  )</span>
+
+</h2>
+
+<br/>
+
+
+
+
+
+
+{* Treść ogłoszenia *}
+<div class="notice_text">
+{$out.notice.n_body}
+</div>
+{* Dane kontaktowe *}
+<div class="notice_contact">
+Kontakt: <b>{$out.notice.n_contact}</b>
+</div>
+
+<br /><br />
+
+</div>

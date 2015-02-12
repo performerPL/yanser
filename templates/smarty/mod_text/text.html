@@ -1,0 +1,26 @@
+{* wyświetla w divie o danym stylu wartość tekstowa *}
+
+{if ( $out.currentStyle == 'mod_text mod_text_0 box box-1-1 ')}
+   <div class="width_site width_{$out.module_id}"><div class="inside_content">
+{/if}
+
+
+
+
+  <div class="{$out.currentStyle} {$out.module_id}" id="{$out.module_id}" ><div class="margin"><div class="inside">
+  {* czy pokazywać tytuł *} 
+  {if $out.module.show_module_title}
+      <div class="mod_text_title">{$out.module.module_name} </div>
+  {/if} 
+  {$out.data.html_text}
+  </div></div>
+  
+{if ( $out.currentStyle == 'mod_text mod_text_0 box box-1-1 ')}
+</div><div class="space"></div>
+</div></div>
+{else}
+</div>
+{/if}
+
+
+

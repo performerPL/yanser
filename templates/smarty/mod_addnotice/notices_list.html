@@ -1,0 +1,126 @@
+{*******  JAVASCRIPT *********}
+<script type="text/javascript" src="js/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.validate.additional-methods.js"></script>
+
+{literal}
+<script type="text/javascript"> 
+// id Itema
+{/literal}
+var itemId = {$out.itemId};
+{literal}
+
+
+jQuery(document).ready(function(){
+	
+	// dodatkowy zapis z tinyMCE dla textarea
+	jQuery("input[name='submit']").click(function() {
+        tinyMCE.triggerSave();
+    });
+	
+	jQuery('#add_notice_button').click(function(){
+			// czysci pola
+			document.forms['notice_add_form'].reset();
+			// zeruje id ogloszenia formularza
+	        jQuery('#n_id').attr("value","");
+        	// pokazuje div z formularzem
+            jQuery('#notice_add_form_div').show('slow');
+            // ukrywa przycisk Dodaj
+            jQuery('#add_notice_button').hide();        
+            // ukrywa przycisk Usuń
+            jQuery('#delete_button').hide();
+            return false;
+    });
+
+    // dodanie handlerów dla o onClick dla linków do edycji
+    jQuery("a[name=edit_link]").click(function() {
+    	// pokazuje div z formularzem
+        jQuery('#notice_add_form_div').show('slow');
+        // pokazuje przycisk Usuń
+        jQuery('#delete_button').show();
+		// dodaje id ogloszenia do formularza
+        jQuery('#n_id').attr("value",this.id);
+        
+		// ładuje dynamicznie dane do edycji
+        jQuery.post(itemId + "?ajax=1&i_cmd=update_notice&n_id=" + this.id, {},
+        	function(data){
+				// tytuł
+				jQuery('#n_title').attr("value",data.n_title);
+				// treść
+				jQuery('#n_body').attr("value",data.n_body);
+				// kontakt
+                jQuery('#n_contact').attr("value",data.n_contact);
+				// treść dla tiny MCE
+				var n_body = tinyMCE.get('n_body');
+				n_body.setContent(data.n_body);
+				
+				if(data.n_status == 1)
+					jQuery('#n_status').attr("checked",true);
+				else
+					jQuery('#n_status').attr("checked",false);
+				// pobiera nowy obrazek zabezpieczający   
+                jQuery("#captcha_img").attr("src","secretImage.php?" + Math.random()); 	
+					
+				// oznacza kategorie glowna
+				jQuery('input[name=main_group]')[data.main_group].checked = true;
+				// oznacza kategorie
+				jQuery('#groups_tree').html(data.groups_tree);
+				// inicjuje drzewko
+				jQuery("#groups_tree").treeview({
+					 collapsed: true,
+					 animated: "fast",
+					 unique: true		 
+				});
+        	},"json");          				
+    });
+
+    // ukrywanie formularza
+    jQuery('#hide_notice_add_form_div').click(function(){
+    	jQuery('#notice_add_form_div').hide('slow');
+    	// pokazuje przycisk Dodaj
+        jQuery('#add_notice_button').show();   
+    });
+}); 
+</script>
+{/literal}
+{*******  JAVASCRIPT *********}
+
+{* przycisk dodaj ogloszenie *}
+<input type="button" id="add_notice_button" value="Dodaj ogłoszenie" class="button_1" />
+
+{* sprawdza czy user zarejestrowany czy tymczasowy *}
+{if $out.userId != 1}
+
+<table class="table_notices">
+		<tr>
+			<td><a href="{$out.itemId}?_notices_order_by=1&_notices_order_type={$out.orderTypeReversed.1}">Data</a></td>
+			<td><a href="{$out.itemId}?_notices_order_by=5&_notices_order_type={$out.orderTypeReversed.5}">Data ważności</a></td>
+			<td><a href="{$out.itemId}?_notices_order_by=2&_notices_order_type={$out.orderTypeReversed.2}">Grupa</a></td>
+			<td><a href="{$out.itemId}?_notices_order_by=3&_notices_order_type={$out.orderTypeReversed.3}">Treść</a></td>
+			<td><a href="{$out.itemId}?_notices_order_by=4&_notices_order_type={$out.orderTypeReversed.4}">Aktywny</a></td>
+			<td></td>
+		</tr>
+
+{** Lista ogloszen **}
+{foreach from=$out.noticesList item=notice}
+		<tr>
+			<td>{$notice.n_created|date_format:"%Y-%m-%d"}</td>
+			<td>{$notice.n_expire|date_format:"%Y-%m-%d"}</td>
+			<td>{$notice.ngm_name}</td>
+			<td>{$notice.n_title}</td>
+			<td>{if $notice.n_status == 1}Tak{else}Nie{/if}</td>
+			<td>
+				{*  dla przeterminowanych *}
+				{if $notice.n_status == 2}
+				<a href="javascript:void(0)" id="copy_{$notice.n_id}" name="edit_link">kopiuj jako nowe</a>
+				{else}
+				<a href="javascript:void(0)" id="{$notice.n_id}" name="edit_link">edycja</a>
+				{/if}
+			</td>
+		</tr>		
+		
+		<div class="space"></div>
+{/foreach}
+
+</table>
+
+{/if}

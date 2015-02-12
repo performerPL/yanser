@@ -1,0 +1,8 @@
+<ul class="mod_notices_list">
+{foreach from=$out.notices item=notice} 
+<li><a href="ogloszenia/{$notice.ng_id}_{$notice.groupPathUrlized}/{$notice.n_id}_{$notice.n_title_urlized}">
+<span class="cat_{$notice.ngm_id}">{$notice.ngm_name}</span> 
+{$notice.n_title}
+</a></li>
+{/foreach}
+</ul>

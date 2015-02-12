@@ -1,0 +1,72 @@
+#contact_form{
+	width:350px;
+	padding:20px;
+	border: 1px solid #DDD;
+	border-radius: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+	background:#FAFAFA;
+	margin-right: auto;
+	margin-left: auto;
+}
+#contact_form legend{
+	font-size: 15px;
+	color: #C9C9C9;
+}
+#contact_form label{
+	display: block;
+	margin-bottom:5px;
+}
+#contact_form label span{
+	float:left;
+	width:100px;
+	color:#666666;
+}
+#contact_form input{
+	height: 25px;
+	border: 1px solid #DBDBDB;
+	border-radius: 3px;
+	padding-left: 4px;
+	color: #666;
+	width: 230px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#contact_form textarea{
+	border: 1px solid #DBDBDB;
+	border-radius: 3px;
+	padding-left: 4px;
+	color: #666;
+	height:100px;
+	width: 230px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.submit_btn {
+	border: 1px solid #D8D8D8;
+	padding: 5px 15px 5px 15px;
+	color: #8D8D8D;
+	text-shadow: 1px 1px 1px #FFF;
+	border-radius: 3px;
+	background: #F8F8F8;
+}
+.submit_btn:hover 
+{
+	background: #ECECEC;
+}
+.success{
+	background: #CFFFF5;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #B9ECCE;
+	border-radius: 5px;
+	font-weight: normal;
+}
+.error{
+	background: #FFDFDF;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #FFCACA;
+	border-radius: 5px;
+	font-weight: normal;
+}

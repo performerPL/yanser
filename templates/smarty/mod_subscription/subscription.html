@@ -1,0 +1,6 @@
+<div id="footer_page">
+    {if $out.data.show_author == 1} Autor: {$out.Item->getAuthor()}&nbsp;&nbsp;{/if}
+    {if $out.data.show_source == 1} Źródło: {$out.Item->getAuthorSource()}<br/>{/if}
+    {if $out.data.show_date_create == 1} Data utworzenia: {$out.Item->getDate()}&nbsp;&nbsp;{/if}
+    {if $out.data.show_date_update == 1} Data modyfikacji: {$out.Item->getDateMod()}{/if}
+</div>
